@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: Anta;
+    src: url("/assets/fonts/Anta-Regular.ttf");
+}
+
+body {
+    background-color: black;
+    color: white;
+}
+
+page {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+page>.container {
+    border: 3px solid white;
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
+}

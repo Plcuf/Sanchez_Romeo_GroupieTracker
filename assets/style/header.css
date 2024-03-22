@@ -1,0 +1,169 @@
+header {
+    /*opacity: 0;*/
+    z-index: 2;
+    position: fixed;
+    width: 100vw;
+    height: 50px;
+    border-bottom: 3px solid #FF00D6;
+    background-color: #1B1B1B;
+
+    
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px 0;
+}
+
+header>.header_buttons {
+    width: 30%;
+    height: 50px;
+    font-size: 25px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+}
+
+header>.header_buttons>a {
+    color: #fff;
+    text-decoration: none;
+    font-family: Anta;
+    transition: .5s;
+}
+
+header>.header_buttons>a:hover {
+    color: #FF00D6;
+    text-shadow: -4px 4px 10px #9f9f9f;
+    /*transform: translate(2px,-2px);*/
+}
+
+header>.header_logo>img {
+    width: 110px;
+    max-height: 100px;
+}
+
+header>.header_searchbar {
+    width: 30%;
+    height: 50px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+header>.header_searchbar>.search {
+    position: relative;
+    margin: auto;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: all .5s;
+    z-index: 4;
+}
+
+header>.header_searchbar>.search:hover {
+    cursor: pointer;
+}
+
+header>.header_searchbar>.search::before {
+    content: "";
+    position: absolute;
+    margin: auto;
+    top: 18px;
+    right: 0;
+    bottom: 0;
+    left: 18px;
+    width: 12px;
+    height: 3px;
+    border-radius: 20px;
+    background-color: #fff;
+    transform: rotate(45deg);
+    transition: all .5s;
+}
+
+header>.header_searchbar>.search::after {
+    content: "";
+    position: absolute;
+    margin: auto;
+    top: -5px;
+    right: 0;
+    bottom: 0;
+    left: -5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    transition: all .5s;
+}
+
+header>.header_searchbar>input {
+    font-family: Anta;
+    position: absolute;
+    margin: auto;
+    width: 30px;
+    height: 30px;
+    outline: none;
+    border: none;
+    background-color: #fff;
+    color: #FF00D6;
+    text-shadow: 0 0 10px #fff;
+    padding: 0 80px 0 20px;
+    border-radius: 30px;
+    box-shadow: 0 0 10px 0 #FF00D6,
+                0 20px 25px 0 rgba(0, 0, 0, 0.2);
+    transition: all .5s;
+    opacity: 0;
+    z-index: 5;
+    font-weight: bolder;
+    letter-spacing: 0.1em;
+}
+
+header>.header_searchbar>input:hover {
+    cursor: pointer;
+}
+
+header>.header_searchbar>input:focus {
+    width: 140px;
+    opacity: 1;
+    cursor: text;
+}
+
+header>.header_searchbar>input:focus ~ .search {
+    transform: translate(100px);
+    background-color: #fff;
+    z-index: 6;
+    border: 2px solid #fff;
+    box-shadow: 0 0 10px #000;
+}
+
+header>.header_searchbar>input:focus ~ .search::before {
+    top: 0;
+    left: 0;
+    width: 25px;
+    background-color: #FF00D6;
+}
+
+header>.header_searchbar>input:focus ~ .search::after {
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 2px;
+    border: none;
+    background-color: #FF00D6;
+    border-radius: 0%;
+    transform: rotate(-45deg);
+}
+
+header>.header_searchbar>input::placeholder {
+    color: #FF00D6;
+    opacity: 0.5;
+    font-weight: bolder;
+}

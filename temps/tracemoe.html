@@ -1,0 +1,61 @@
+{{define "tracemoe"}}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title> AniFindr - TraceMoe </title>
+        <link rel="stylesheet" href="assets/style/header.css">
+        <link rel="stylesheet" href="assets/style/tracemoe.css">
+        <link rel="stylesheet" href="assets/style/footer.css">
+    </head>
+    <body>
+        <header>
+            <div class="header_buttons">
+                <a href="#scan"> Scans </a>
+                <a href="#categories"> Category </a>
+            </div>
+
+            <div class="header_logo">
+                <img src="assets/images/AniFindrLogo.png">
+            </div>
+            
+            <div class="header_searchbar">
+                <input type="text" placeholder="search">
+                <div class="search"></div>
+            </div>
+        </header>
+
+        <page>
+            <div class="container">
+                <p> Trace an anime using a picture from it ! </p>
+                <p> (it searches a frame with identical colors) </p>
+                <form action="/tracemoe/treatment" method="POST" enctype="multipart/form-data">
+                    <label for="images" class="drop-container" id="dropcontainer">
+                        <span class="drop-title"> Drop a picture here </span>
+                        or
+                        <input type="file" id="images" accept="images" name="image" required>
+                    </label>
+                    <div class="arrow">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <button type="submit"> Trace </button>
+                </form>
+            </div>
+        </page>
+
+        <footer>
+            <div class="footer_logo">
+                <img src="../assets/images/AniFindrLogo.png">
+            </div>
+            <div class="footer_text">
+                <p> AniFindr </p>
+                <p> © 2021 AniFindr. All rights reserved. </p>
+            </div>
+        </footer>
+    </body>
+</html>
+{{end}}

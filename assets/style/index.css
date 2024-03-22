@@ -12,176 +12,6 @@ body {
     background-color: black;
 }
 
-header {
-    /*opacity: 0;*/
-    z-index: 2;
-    position: fixed;
-    width: 100vw;
-    height: 50px;
-    border-bottom: 3px solid #FF00D6;
-    background-color: #1B1B1B;
-
-    
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 20px 0;
-}
-
-header>.header_buttons {
-    width: 30%;
-    height: 50px;
-    font-size: 25px;
-
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 10px;
-}
-
-header>.header_buttons>a {
-    color: #fff;
-    text-decoration: none;
-    font-family: Anta;
-    transition: .5s;
-}
-
-header>.header_buttons>a:hover {
-    color: #FF00D6;
-    text-shadow: -4px 4px 10px #9f9f9f;
-    /*transform: translate(2px,-2px);*/
-}
-
-header>.header_logo>img {
-    width: 110px;
-    max-height: 100px;
-}
-
-header>.header_searchbar {
-    width: 30%;
-    height: 50px;
-
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    align-items: center;
-}
-
-header>.header_searchbar>.search {
-    position: relative;
-    margin: auto;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    transition: all .5s;
-    z-index: 4;
-}
-
-header>.header_searchbar>.search:hover {
-    cursor: pointer;
-}
-
-header>.header_searchbar>.search::before {
-    content: "";
-    position: absolute;
-    margin: auto;
-    top: 18px;
-    right: 0;
-    bottom: 0;
-    left: 18px;
-    width: 12px;
-    height: 3px;
-    border-radius: 20px;
-    background-color: #fff;
-    transform: rotate(45deg);
-    transition: all .5s;
-}
-
-header>.header_searchbar>.search::after {
-    content: "";
-    position: absolute;
-    margin: auto;
-    top: -5px;
-    right: 0;
-    bottom: 0;
-    left: -5px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 3px solid #fff;
-    transition: all .5s;
-}
-
-header>.header_searchbar>input {
-    font-family: Anta;
-    position: absolute;
-    margin: auto;
-    width: 30px;
-    height: 30px;
-    outline: none;
-    border: none;
-    background-color: #fff;
-    color: #FF00D6;
-    text-shadow: 0 0 10px #fff;
-    padding: 0 80px 0 20px;
-    border-radius: 30px;
-    box-shadow: 0 0 10px 0 #FF00D6,
-                0 20px 25px 0 rgba(0, 0, 0, 0.2);
-    transition: all .5s;
-    opacity: 0;
-    z-index: 5;
-    font-weight: bolder;
-    letter-spacing: 0.1em;
-}
-
-header>.header_searchbar>input:hover {
-    cursor: pointer;
-}
-
-header>.header_searchbar>input:focus {
-    width: 140px;
-    opacity: 1;
-    cursor: text;
-}
-
-header>.header_searchbar>input:focus ~ .search {
-    transform: translate(100px);
-    background-color: #fff;
-    z-index: 6;
-    border: 2px solid #fff;
-    box-shadow: 0 0 10px #000;
-}
-
-header>.header_searchbar>input:focus ~ .search::before {
-    top: 0;
-    left: 0;
-    width: 25px;
-    background-color: #FF00D6;
-}
-
-header>.header_searchbar>input:focus ~ .search::after {
-    top: 0;
-    left: 0;
-    width: 25px;
-    height: 2px;
-    border: none;
-    background-color: #FF00D6;
-    border-radius: 0%;
-    transform: rotate(-45deg);
-}
-
-header>.header_searchbar>input::placeholder {
-    color: #FF00D6;
-    opacity: 0.5;
-    font-weight: bolder;
-}
-
 website {
     display: flex;
     flex-flow: column nowrap;
@@ -189,7 +19,7 @@ website {
     align-items: center;
 }
 
-website>#scan {
+website>scan {
     border: 3px solid white;
     border-radius: 10px;
     width: 90vw;
@@ -201,12 +31,12 @@ website>#scan {
     align-items: center;
 }
 
-website>#scan>.scan_offset {
+website>scan>.scan_offset {
     width: 90vw;
     height: 150px;
 }
 
-website>#scan>.scan_page {
+website>scan>.scan_page {
     width: 90vw;
     height: 80vh;
 
@@ -216,7 +46,7 @@ website>#scan>.scan_page {
     align-items: center;
 }
 
-website>#scan>.scan_page>.scan_page_info {
+website>scan>.scan_page>.scan_page_info {
     width: 60%;
     height: 80%;
 
@@ -227,7 +57,7 @@ website>#scan>.scan_page>.scan_page_info {
     gap: 30px;
 }
 
-website>#scan>.scan_page>.scan_page_info>.scan_page_info_logo {
+website>scan>.scan_page>.scan_page_info>.scan_page_info_logo {
     width: 50%;
     height: 100px;
     background-image: url("/assets/images/AniFindrName.png");
@@ -236,7 +66,7 @@ website>#scan>.scan_page>.scan_page_info>.scan_page_info_logo {
     background-position: center;
 }
 
-website>#scan>.scan_page>.scan_page_info>.scan_page_info_text {
+website>scan>.scan_page>.scan_page_info>.scan_page_info_text {
     width: 60%;
     height: 100px;
     font-size: 25px;
@@ -245,11 +75,11 @@ website>#scan>.scan_page>.scan_page_info>.scan_page_info_text {
     padding-left: 5%;
 }
 
-website>#scan>.scan_page>.scan_page_info>.scan_page_info_text>p>span {
+website>scan>.scan_page>.scan_page_info>.scan_page_info_text>p>span {
     color: #FF00D6;
 }
 
-website>#scan>.scan_page>.scan_page_button {
+website>scan>.scan_page>.scan_page_button {
     width: 25%;
     height: 80%;
     display: flex;
@@ -258,7 +88,7 @@ website>#scan>.scan_page>.scan_page_button {
 }
 
 
-website>#scan>.scan_page>.scan_page_button>a {
+website>scan>.scan_page>.scan_page_button>a {
     width: 100%;
     height: 100%;
     border-radius: 100px 0px;
@@ -270,11 +100,11 @@ website>#scan>.scan_page>.scan_page_button>a {
     transition: .5s;
 }
 
-website>#scan>.scan_page>.scan_page_button>a:hover, website>#scan>.scan_page>.scan_page_button>p:hover ~ a {
+website>scan>.scan_page>.scan_page_button>a:hover, website>#scan>.scan_page>.scan_page_button>p:hover ~ a {
     filter: grayscale(0);
 }
 
-website>#scan>.scan_page>.scan_page_button>p {
+website>scan>.scan_page>.scan_page_button>p {
     position: absolute;
     color: #FF00D6;
     font-family: Anta;
@@ -283,7 +113,7 @@ website>#scan>.scan_page>.scan_page_button>p {
     z-index: 1;
 }
 
-website>#scan>.scan_page>.scan_page_button>a:hover ~ p, website>#scan>.scan_page>.scan_page_button>p:hover {
+website>scan>.scan_page>.scan_page_button>a:hover ~ p, website>#scan>.scan_page>.scan_page_button>p:hover {
     cursor: pointer;
 }
 
@@ -300,7 +130,6 @@ website>suggestions {
 }
 
 website>suggestions>.suggestions_toprow {
-    border: 3px solid white;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-evenly;
@@ -308,9 +137,7 @@ website>suggestions>.suggestions_toprow {
 }
 
 website>suggestions>.suggestions_toprow>.suggestions_toprow_anime {
-    border: 3px solid white;
     width: 20%;
-    height: 80%;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -323,7 +150,177 @@ website>suggestions>.suggestions_toprow>.suggestions_toprow_anime>img {
     border-radius: 10px;
 }
 
-website>suggestions>.suggestions_toprow>.suggestions_toprow_anime>a {
-    text-decoration: none;
+website>suggestions>.suggestions_toprow>.suggestions_toprow_anime>p {
     color: #FF00D6;
+    font-family: Anta;
+}
+
+website>suggestions>.suggestions_toprow>.suggestions_toprow_anime>a {
+    width: 20%;
+    height: 20%;
+    color: #000;
+    position:absolute;
+}
+
+website>suggestions>.suggestions_midrow {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+website>suggestions>.suggestions_midrow>p {
+    color: #FF00D6;
+    font-family: Anta;
+    width: 40%;
+    text-align: center;
+    font-size: 30px;
+    padding: 2.5%;
+    border-bottom: 1px solid #FF00D6;
+    border-radius: 25px;
+}
+
+website>suggestions>.suggestions_midrow>.suggestions_midrow_anime {
+    width: 20%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+website>suggestions>.suggestions_midrow>.suggestions_midrow_anime>img {
+    object-fit: cover;
+    width: 100%;
+    border-radius: 10px;
+}
+
+website>suggestions>.suggestions_midrow>.suggestions_midrow_anime>p {
+    color: #FF00D6;
+    font-family: Anta;
+}
+
+website>suggestions>.suggestions_midrow>.suggestions_midrow_anime>a {
+    width: 20%;
+    height: 20%;
+    color: #000;
+    position:absolute;
+}
+
+website>suggestions>.suggestions_lowrow {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+website>suggestions>.suggestions_lowrow>.suggestions_lowrow_anime {
+    width: 20%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+website>suggestions>.suggestions_lowrow>.suggestions_lowrow_anime>img {
+    object-fit: cover;
+    width: 100%;
+    border-radius: 10px;
+}
+
+website>suggestions>.suggestions_lowrow>.suggestions_lowrow_anime>p {
+    color: #FF00D6;
+    font-family: Anta;
+}
+
+website>suggestions>.suggestions_lowrow>.suggestions_lowrow_anime>a {
+    width: 20%;
+    height: 20%;
+    color: #000;
+    position:absolute;
+}
+
+website>categories {
+    margin-top: 5%;
+    width: 90vw;
+    height: 80vh;
+    border: 3px solid white;
+    border-radius:  10px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    gap: 50px;
+    align-items: center;
+}
+
+website>categories>h1 {
+    color: #FF00D6;
+    font-family: Anta;
+    font-size: 40px;
+    padding: 2.5% 5% 2.5% 5%;
+    border-bottom: 1px solid #FF00D6;
+    border-radius: 25px;
+}
+
+website>categories>.categories_toprow {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+website>categories>.categories_lowrow {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+website>categories>.categories_toprow>.categories_toprow_anime {
+    width: 20%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+website>categories>.categories_lowrow>.categories_lowrow_anime {
+    width: 20%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+website>categories>.categories_toprow>.categories_toprow_anime>img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+website>categories>.categories_lowrow>.categories_lowrow_anime>img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+website>categories>.categories_toprow>.categories_toprow_anime>p {
+    color: #FF00D6;
+    font-family: Anta;
+}
+
+website>categories>.categories_lowrow>.categories_lowrow_anime>p {
+    color: #FF00D6;
+    font-family: Anta;
+}
+
+website>categories>.categories_toprow>.categories_toprow_anime>a {
+    width: 20%;
+    height: 20%;
+    color: #000;
+    position:absolute;
+}
+
+website>categories>.categories_lowrow>.categories_lowrow_anime>a {
+    width: 20%;
+    height: 20%;
+    color: #000;
+    position:absolute;
 }
