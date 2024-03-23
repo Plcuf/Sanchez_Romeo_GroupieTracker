@@ -57,5 +57,6 @@ func Tracemoetreatment(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleError(w http.ResponseWriter, r *http.Request) {
-	http.Error(w, "404 Not Found", http.StatusNotFound)
+	temps := temps.GetTemps()
+	temps.ExecuteTemplate(w, "error", nil)
 }

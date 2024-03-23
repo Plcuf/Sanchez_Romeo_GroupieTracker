@@ -1,3 +1,4 @@
+{{define "error"}}
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,19 +6,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title> AniFindr - Error </title>
-        <link rel="stylesheet" href="../assets/style/header.css">
-        <link rel="stylesheet" href="../assets/style/error.css">
-        <link rel="stylesheet" href="../assets/style/footer.css">
+        <link rel="stylesheet" href="assets/style/header.css">
+        <link rel="stylesheet" href="assets/style/error.css">
+        <link rel="stylesheet" href="assets/style/footer.css">
     </head>
     <body>
         <header>
             <div class="header_buttons">
-                <a href="#scan"> Scans </a>
-                <a href="#categories"> Category </a>
+                <a href="/tracemoe"> Scans </a>
+                <a href="/index#categories"> Category </a>
             </div>
 
             <div class="header_logo">
-                <img src="../assets/images/AniFindrLogo.png">
+                <a href="/index"><img src="/assets/images/AniFindrLogo.png"></a>
             </div>
             
             <div class="header_searchbar">
@@ -28,7 +29,10 @@
 
         <page>
             <div class="container">
-                
+                <div class="arrow"></div>
+                <p class="arrow_text"> Click here to go back to the menu </p>
+                <img src="assets/images/error.gif">
+                <p class="error_message"> The page you're trying to access doesn't exist </p>
             </div>
         </page>
 
@@ -43,3 +47,4 @@
         </footer>
     </body>
 </html>
+{{end}}
