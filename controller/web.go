@@ -8,6 +8,8 @@ import (
 	"main/temps"
 	"mime/multipart"
 	"net/http"
+	"strconv"
+	"time"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -82,21 +84,39 @@ func HandleError(w http.ResponseWriter, r *http.Request) {
 }
 
 func Search(w http.ResponseWriter, r *http.Request) {
-	tag := r.FormValue("tag")
+	OffSet := "0"
+	tag := r.FormValue("category")
 	year := r.FormValue("year")
-	rating := r.FormValue("rating")
+	ratingStr := r.FormValue("rating")
 	finished := r.FormValue("finished")
+	if len(year) == 0 {
+		year = ""
+	}
+	if len(ratingStr) == 0 {
+		ratingStr = ""
+	}
+	if len(finished) == 0 {
+		finished = ""
+	}
+	if len(year) != 0 {
+		year = year + "-01-01"
+	}
+	var rating float64
+	if ratingStr != "" {
+		rating, _ = strconv.ParseFloat(ratingStr, 64)
+	}
 
-	url := "https://kitsu.io/api/edge/anime?filter[categories]=" + tag
+	url := "https://kitsu.io/api/edge/anime?page[limit]=20&page[offset]=" + string(OffSet) + "&filter[categories]=" + tag
 
 	req, err := http.Get(url)
 	if err != nil {
-		http.Error(w, "Failed to make POST request to Trace.moe API: "+err.Error(), http.StatusInternalServerError)
+		http.Error(w, "Failed to make GET request to Kitsu API: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
 	defer req.Body.Close()
 
-	fmt.Println("response Status:", req.Status)
+	fmt.Println("Response Status:", req.Status)
+
 	// Read response body
 	body, err := io.ReadAll(req.Body)
 	if err != nil {
@@ -104,24 +124,74 @@ func Search(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Println(string(body))
-
-	//Decode JSON response
-	var response Anime
+	// Decode JSON response
+	var response AnimeResponse
 	if err := json.Unmarshal(body, &response); err != nil {
 		http.Error(w, "Failed to decode JSON response: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	response.Tag = tag
+	// Filter the response based on the provided filters
+	filteredAnime := AnimeResponse{}
+	// Create a map to store unique anime IDs
+	uniqueAnimeIDs := make(map[string]struct{})
 
+	for _, anime := range response.Data {
+		// Check if the anime ID has already been added
+		if _, ok := uniqueAnimeIDs[anime.ID]; ok {
+			continue // Skip if the anime ID has already been added
+		}
+
+		// Apply filters if they are present
+		passedFilters := true
+
+		if year != "" {
+			// Filter by year
+			StartDate, err := time.Parse("2006-01-02", anime.Attributes.StartDate)
+			if err != nil {
+				fmt.Println(err)
+			}
+			YearChek, err := time.Parse("2006-01-02", year)
+			if err != nil {
+				fmt.Println(err)
+			}
+			if StartDate.Before(YearChek) {
+				passedFilters = false
+			}
+		}
+
+		// Filter by rating
+		if ratingStr != "" {
+			avgRating, err := strconv.ParseFloat(anime.Attributes.AverageRating, 64)
+			if err != nil || avgRating < rating {
+				passedFilters = false
+			}
+		}
+
+		// Filter by finished status
+		if finished != "" && anime.Attributes.Status != finished {
+			passedFilters = false
+		}
+
+		// If anime passes all filters, add it to filteredAnime and update the map
+		if passedFilters {
+			filteredAnime.Data = append(filteredAnime.Data, anime)
+			uniqueAnimeIDs[anime.ID] = struct{}{}
+		}
+	}
+
+	// Pass the filtered anime to your page
 	temps := temps.GetTemps()
-	temps.ExecuteTemplate(w, "search", response)
+	if year != "" && len(year) != 0 || ratingStr != "" && len(ratingStr) != 0 || finished != "" {
+		temps.ExecuteTemplate(w, "search", filteredAnime)
+	} else {
+		temps.ExecuteTemplate(w, "search", response)
+	}
 }
 
 func Animedisplay(w http.ResponseWriter, r *http.Request) {
-	slug := r.FormValue("slug")
-	url := "https://kitsu.io/api/edge/anime?filter[slug]=" + slug
+	anime_name := r.FormValue("name")
+	url := "https://kitsu.io/api/edge/anime?filter[slug]=" + anime_name
 
 	req, err := http.Get(url)
 	if err != nil {
@@ -138,15 +208,13 @@ func Animedisplay(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Println(string(body))
-
 	//Decode JSON response
-	var response Anime
+	var response AnimeResponse
 	if err := json.Unmarshal(body, &response); err != nil {
 		http.Error(w, "Failed to decode JSON response: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	temps := temps.GetTemps()
-	temps.ExecuteTemplate(w, "anime", response)
+	temps.ExecuteTemplate(w, "animedisplay", response)
 }

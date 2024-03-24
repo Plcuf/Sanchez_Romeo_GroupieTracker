@@ -1,137 +1,94 @@
+{{define "search"}}
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title> AniFindr </title>
-        <link rel="stylesheet" href="/assets/style/search.css">
-        <link rel="stylesheet" href="/assets/style/header.css">
-        <link rel="stylesheet" href="/assets/style/footer.css">
-    </head>
-    <body>
-        <header>
-            <div class="header_buttons">
-                <a href="/tracemoe"> Scans </a>
-                <a href="/index#categories"> Category </a>
-            </div>
 
-            <div class="header_logo">
-                <a href="/index"><img src="/assets/images/AniFindrLogo.png"></a>
-            </div>
-            
-            <div class="header_searchbar">
-                <input type="text" placeholder="search">
-                <div class="search"></div>
-            </div>
-        </header>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> AniFindr </title>
+    <link rel="icon" type="image/x-icon" href="assets/images/AniFindrFavicon.ico">
+    <link rel="stylesheet" href="/assets/style/search.css">
+    <link rel="stylesheet" href="/assets/style/header.css">
+    <link rel="stylesheet" href="/assets/style/footer.css">
+</head>
 
-        <page>
-            <form class="container" action="search/treatment" method="GET">
-                <div class="filter">
-                    <div class="category">
-                        <input type="radio" name="category" value="anime" id="Action" checked>
-                        <label for="Action"> Action </label>
-                        <input type="radio" name="category" value="anime" id="Adventure">
-                        <label for="Adventure"> Adventure </label>
-                        <input type="radio" name="category" value="anime" id="Combat">
-                        <label for="Combat"> Combat </label>
-                        <input type="radio" name="category" value="anime" id="Isekai">
-                        <label for="Isekai"> Isekai </label>
-                        <input type="radio" name="category" value="anime" id="Romance">
-                        <label for="Romance"> Romance </label>
-                        <input type="radio" name="category" value="anime" id="Sport">
-                        <label for="Sport"> Sport </label>
+<body>
+    <header>
+        <div class="header_buttons">
+            <a href="/tracemoe"> Scans </a>
+            <a href="/index#categories"> Category </a>
+        </div>
+
+        <div class="header_logo">
+            <a href="/index"><img src="/assets/images/AniFindrLogo.png"></a>
+        </div>
+
+        <div class="header_searchbar">
+            <input type="text" placeholder="search">
+            <div class="search"></div>
+        </div>
+    </header>
+
+    <page>
+        <form class="container" action="/search" method="POST">
+            <div class="filter">
+                <div class="category">
+                    <input type="radio" name="category" value="action" id="action">
+                    <label for="action"> Action </label>
+                    <input type="radio" name="category" value="adventure" id="adventure">
+                    <label for="adventure"> Adventure </label>
+                    <input type="radio" name="category" value="combat" id="combat">
+                    <label for="combat"> Combat </label>
+                    <input type="radio" name="category" value="isekai" id="isekai">
+                    <label for="isekai"> Isekai </label>
+                    <input type="radio" name="category" value="romance" id="romance">
+                    <label for="romance"> Romance </label>
+                    <input type="radio" name="category" value="sport" id="sport">
+                    <label for="sport"> Sport </label>
+                </div>
+                <div class="more_filter">
+                    <div class="more">
+                        <label for="year"> Release Year (to now) </label>
+                        <input type="number" id="year" name="year" value="year">
                     </div>
-                    <div class="more_filter">
-                        <div class="more">
-                            <label for="year"> Release Year (to now) </label>
-                            <input type="number" id="year" name="year" value="year">
-                        </div>
-                        <div class="more">
-                            <label for="rating"> Rating (to 100) </label>
-                            <input type="number" id="rating" name="rating" value="rating">
-                        </div>
-                        <div class="more">
-                            <label for="finished"> Finished </label>
-                            <input type="checkbox" id="finished" name="finished" value="finished">
-                        </div>
+                    <div class="more">
+                        <label for="rating"> Rating (to 100) </label>
+                        <input type="number" id="rating" name="rating" value="rating">
+                    </div>
+                    <div class="more">
+                        <label for="finished"> Finished </label>
+                        <input type="checkbox" id="finished" name="finished" value="finished">
                     </div>
                 </div>
-                <button type="submit"> Search </button>
-            </form>
-            <div class="animes">
-                <form action="/anime/treatment" class="anime">
-                    <button type="submit" class="overlay">  </button>
-                    <img src="../assets/images/BlackCloverWallpaper.jpg">
-                    <p> Black Clover </p>
-                </form>
-                <form action="/anime/treatment" class="anime">
-                    <button type="submit" class="overlay">  </button>
-                    <img src="../assets/images/BlackCloverWallpaper.jpg">
-                    <p> Black Clover </p>
-                </form>
-                <form action="/anime/treatment" class="anime">
-                    <button type="submit" class="overlay">  </button>
-                    <img src="../assets/images/BlackCloverWallpaper.jpg">
-                    <p> Black Clover </p>
-                </form>
-                <form action="/anime/treatment" class="anime">
-                    <button type="submit" class="overlay">  </button>
-                    <img src="../assets/images/BlackCloverWallpaper.jpg">
-                    <p> Black Clover </p>
-                </form>
-                <form action="/anime/treatment" class="anime">
-                    <button type="submit" class="overlay">  </button>
-                    <img src="../assets/images/BlackCloverWallpaper.jpg">
-                    <p> Black Clover </p>
-                </form>
-                <form action="/anime/treatment" class="anime">
-                    <button type="submit" class="overlay">  </button>
-                    <img src="../assets/images/BlackCloverWallpaper.jpg">
-                    <p> Black Clover </p>
-                </form>
-                <form action="/anime/treatment" class="anime">
-                    <button type="submit" class="overlay">  </button>
-                    <img src="../assets/images/BlackCloverWallpaper.jpg">
-                    <p> Black Clover </p>
-                </form>
-                <form action="/anime/treatment" class="anime">
-                    <button type="submit" class="overlay">  </button>
-                    <img src="../assets/images/BlackCloverWallpaper.jpg">
-                    <p> Black Clover </p>
-                </form>
-                <form action="/anime/treatment" class="anime">
-                    <button type="submit" class="overlay">  </button>
-                    <img src="../assets/images/BlackCloverWallpaper.jpg">
-                    <p> Black Clover </p>
-                </form>
-                <form action="/anime/treatment" class="anime">
-                    <button type="submit" class="overlay">  </button>
-                    <img src="../assets/images/BlackCloverWallpaper.jpg">
-                    <p> Black Clover </p>
-                </form>
-                <form action="/anime/treatment" class="anime">
-                    <button type="submit" class="overlay">  </button>
-                    <img src="../assets/images/BlackCloverWallpaper.jpg">
-                    <p> Black Clover </p>
-                </form>
-                <form action="/anime/treatment" class="anime">
-                    <button type="submit" class="overlay">  </button>
-                    <img src="../assets/images/BlackCloverWallpaper.jpg">
-                    <p> Black Clover </p>
-                </form>
             </div>
-        </page>
+            <button type="submit"> Search </button>
+        </form>
+        {{if .Data}}
+        <div class="animes">
+            {{range .Data}}
+                <div class="anime">
+                    <a href="/animedisplay?name={{.Attributes.Slug}}" class="overlay"></a>
+                    <img class="anime_image_cover" src="{{.Attributes.CoverImage.Original}}">
+                    <p class="anime_slug"> {{.Attributes.CanonicalTitle}} </p>
+                    <!-- Add more attributes you want to display -->
+                </div>
+                {{end}}
+            {{end}}
+        </div>
+    </page>
 
-        <footer>
-            <div class="footer_logo">
-                <img src="../assets/images/AniFindrLogo.png">
-            </div>
-            <div class="footer_text">
-                <p> AniFindr </p>
-                <p> © 2021 AniFindr. All rights reserved. </p>
-            </div>
-        </footer>
-    </body>
+    <footer>
+        <div class="footer_logo">
+            <img src="/assets/images/AniFindrLogo.png">
+        </div>
+        <div class="footer_text">
+            <p> AniFindr </p>
+            <p> © 2021 AniFindr. All rights reserved. </p>
+        </div>
+    </footer>
+</body>
+
 </html>
+
+{{end}}

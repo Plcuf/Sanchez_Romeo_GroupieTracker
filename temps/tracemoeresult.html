@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title> AniFindr </title>
-        <link rel="icon" type="image/x-icon" href="assets/images/AniFindrFavicon.ico">
+        <link rel="icon" type="image/x-icon" href="/assets/images/AniFindrFavicon.ico">
         <link rel="stylesheet" href="/assets/style/tracemoeresult.css">
         <link rel="stylesheet" href="/assets/style/header.css">
         <link rel="stylesheet" href="/assets/style/footer.css">
@@ -30,15 +30,17 @@
 
         <page>
             {{range .Result}}
-            <container>
+            <div class="container">
                 <div class="text">
-                    <p>Anilist ID: {{.Anilist}}</p>
-                    <p>Filename: {{.Filename}}</p>
-                    <p>Episode: {{if .Episode}}{{.Episode}}{{else}}Unknown{{end}}</p>
-                    <p>Similarity: {{.Similarity}}</p>
+                    <p> <pink> Anilist ID </pink> : {{.Anilist}} </p>
+                    <p> <pink> Filename </pink> : {{.Filename}} </p>
+                    <p> <pink> Episode </pink> : {{if .Episode}}{{.Episode}}{{else}}Unknown{{end}}</p>
+                    <p> <pink> Similarity </pink> : {{.Similarity}}</p>
                 </div>
-                <p>Video: <a href="{{.Video}}">{{.Video}}</a></p>
-            </container>
+                <video width="320" height="240" controls autoplay muted loop>
+                    <source src="{{.Video}}" type="video/mp4">
+                </video>
+            </div>
             {{end}}
         </page>
 

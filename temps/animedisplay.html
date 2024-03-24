@@ -1,3 +1,4 @@
+{{define "animedisplay"}}
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,7 +29,25 @@
         </header>
 
         <page>
-            
+            {{range .Data}}
+            <div class="container">
+                <div class="top">
+                    <div class="text">
+                        <h1> Infos </h1>
+                        <p> <pink> Title </pink> : {{.Attributes.CanonicalTitle}} ({{if .Attributes.Titles.JaJP}} {{.Attributes.Titles.JaJP}} {{end}}) </p>
+                        <p> <pink> Rating </pink> : {{.Attributes.AverageRating}} </p>
+                        <p> <pink> Popularity rank </pink> : {{.Attributes.PopularityRank}} </p>
+                        <p> <pink> Episodes </pink> : {{.Attributes.EpisodeCount}} | {{.Attributes.Status}} </p>
+                        <p> <pink> Release Date </pink> : {{.Attributes.StartDate}} </p>
+                    </div>
+                    <img src="{{.Attributes.CoverImage.Original}}">
+                </div>
+                <div class="synopsis">
+                    <h1> Synopsis </h1>
+                    <p> {{.Attributes.Synopsis}} </p>
+                </div>
+            </div>
+            {{end}}
         </page>
 
         <footer>
@@ -42,3 +61,4 @@
         </footer>
     </body>
 </html>
+{{end}}
