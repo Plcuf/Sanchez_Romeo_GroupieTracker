@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: Anta;
+    src: url("/assets/fonts/Anta-Regular.ttf");
+}
+
+body {
+    background-color: black;
+}
+

@@ -1,0 +1,25 @@
+{{define "rapide"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trace.moe Result</title>
+</head>
+<body>
+    <h1>Trace.moe Result</h1>
+    <p>Frame Count: {{.FrameCount}}</p>
+    <p>Error: {{.Error}}</p>
+    {{range .Result}}
+        <div>
+            <p>Anilist ID: {{.Anilist}}</p>
+            <p>Filename: {{.Filename}}</p>
+            <p>Episode: {{if .Episode}}{{.Episode}}{{else}}Unknown{{end}}</p>
+            <p>Similarity: {{.Similarity}}</p>
+            <p>Video: <a href="{{.Video}}">{{.Video}}</a></p>
+            <p>Image: <img src="{{.Image}}" alt="Preview"></p>
+        </div>
+    {{end}}
+</body>
+</html>
+{{end}}

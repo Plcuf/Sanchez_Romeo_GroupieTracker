@@ -1,15 +1,14 @@
-{{define "tracemoe"}}
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title> AniFindr - TraceMoe </title>
+        <title> AniFindr </title>
         <link rel="icon" type="image/x-icon" href="assets/images/AniFindrFavicon.ico">
-        <link rel="stylesheet" href="assets/style/header.css">
-        <link rel="stylesheet" href="assets/style/tracemoe.css">
-        <link rel="stylesheet" href="assets/style/footer.css">
+        <link rel="stylesheet" href="/assets/style/animedisplay.css">
+        <link rel="stylesheet" href="/assets/style/header.css">
+        <link rel="stylesheet" href="/assets/style/footer.css">
     </head>
     <body>
         <header>
@@ -29,23 +28,7 @@
         </header>
 
         <page>
-            <div class="container">
-                <p> Trace an anime using a picture from it ! </p>
-                <p> (it searches a frame with identical colors) </p>
-                <form action="/tracemoe/result" method="POST" enctype="multipart/form-data">
-                    <label for="images" class="drop-container" id="dropcontainer">
-                        <span class="drop-title"> Drop a picture here </span>
-                        or
-                        <input type="file" id="images" accept="image/*" name="image" required>
-                    </label>
-                    <div class="arrow">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <button type="submit"> Trace </button>
-                </form>
-            </div>
+            
         </page>
 
         <footer>
@@ -59,4 +42,3 @@
         </footer>
     </body>
 </html>
-{{end}}
