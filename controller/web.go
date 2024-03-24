@@ -21,7 +21,6 @@ func Tracemoe(w http.ResponseWriter, r *http.Request) {
 
 func Tracemoetreatment(w http.ResponseWriter, r *http.Request) {
 	r.ParseMultipartForm(10 << 20)
-	fmt.Println(r.FormFile("image"))
 	file, _, err := r.FormFile("image")
 	if err != nil {
 		fmt.Println("NoT cool : ", err.Error())
@@ -30,30 +29,39 @@ func Tracemoetreatment(w http.ResponseWriter, r *http.Request) {
 
 	var buffer bytes.Buffer
 	write := multipart.NewWriter(&buffer)
+
 	part, err := write.CreateFormFile("image", "image.jpg")
+	if err != nil {
+		fmt.Println("NoT cool : ", err.Error())
+	}
+
 	io.Copy(part, file)
-	write.Close()
 
-	url := "https://api.trace.moe/searchhttps://api.trace.moe/search"
+	url := "https://api.trace.moe/search"
 
-	req, err := http.NewRequest("POST", url, &buffer)
+	req, err := http.Post(url, "multipart/form-data", &buffer)
 	if err != nil {
 		fmt.Println("NoT cool : ", err.Error())
 	}
 
-	req.Header.Set("Content-Type", write.FormDataContentType())
+	defer req.Body.Close()
 
-	client := &http.Client{}
-	resp, err := client.Do(req)
-	if err != nil {
-		fmt.Println("NoT cool : ", err.Error())
-	}
-	defer resp.Body.Close()
+	fmt.Println("response Status:", req.Status)
 
-	fmt.Println("response Status:", resp.Status)
+	http.Redirect(w, r, "/tracemoe/result", http.StatusSeeOther)
+}
 
-	temps := temps.GetTemps()
-	temps.ExecuteTemplate(w, "tracedmoe", nil)
+func Tracemoeresult(w http.ResponseWriter, r *http.Request) {
+
+}
+
+func Search(w http.ResponseWriter, r *http.Request) {
+}
+
+func Searchtreatment(w http.ResponseWriter, r *http.Request) {
+}
+
+func Anime(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleError(w http.ResponseWriter, r *http.Request) {

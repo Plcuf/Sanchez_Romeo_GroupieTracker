@@ -12,6 +12,10 @@ func InitServer() {
 	http.HandleFunc("/index", ctrl.Index)
 	http.HandleFunc("/tracemoe", ctrl.Tracemoe)
 	http.HandleFunc("/tracemoe/treatment", ctrl.Tracemoetreatment)
+	http.HandleFunc("/tracemoe/result", ctrl.Tracemoeresult)
+	http.HandleFunc("/search", ctrl.Search)
+	http.HandleFunc("/search/treatment", ctrl.Searchtreatment)
+	http.HandleFunc("/anime", ctrl.Anime)
 
 	// Handle 404
 	http.HandleFunc("/", ctrl.HandleError)
