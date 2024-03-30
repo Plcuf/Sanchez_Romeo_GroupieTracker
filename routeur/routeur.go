@@ -13,6 +13,7 @@ func InitServer() {
 	http.HandleFunc("/tracemoe", ctrl.Tracemoe)
 	http.HandleFunc("/tracemoe/result", ctrl.Tracemoetreatment)
 	http.HandleFunc("/search", ctrl.Search)
+	http.HandleFunc("/anime/treatment", ctrl.AnimeTreatment)
 	http.HandleFunc("/animedisplay", ctrl.Animedisplay)
 
 	// Handle 404
@@ -24,7 +25,7 @@ func InitServer() {
 	http.Handle("/assets/", http.StripPrefix("/assets/", fileserver))
 
 	//Le lien d'ou est lancé le serveur
-	fmt.Println("(http://localhost:8080/index) - Server started on port:8080")
-	http.ListenAndServe("localhost:8080", nil)
+	fmt.Println("(http://localhost:3030/index) - Server started on port:2020")
+	http.ListenAndServe("localhost:3030", nil)
 	fmt.Println("Server closed")
 }

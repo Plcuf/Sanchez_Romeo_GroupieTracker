@@ -221,3 +221,40 @@ page>.pagination>.previous page>.pagination>.next {
 page>.pagination>.previous:hover page>.pagination>.next:hover {
     border-color: #FF00D6;
 }
+
+page>.pagination {
+    margin-top: 50px;
+    width: 80vw;
+    height: 20px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+}
+
+page>.pagination>p {
+    color: white;
+    font-family: Anta;
+    font-size: 20px;
+    background-color: #1B1B1B;
+    padding: 5px 10px;
+    border: 3px solid white;
+    border-radius: 10px;
+}
+
+page>.pagination>a {
+    text-decoration: none;
+    color: white;
+    font-family: Anta;
+    font-size: 20px;
+    padding: 5px 10px;
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: .5s;
+    background-color: #1B1B1B;
+}
+
+page>.pagination>a:hover {
+    border-color: #FF00D6;
+}

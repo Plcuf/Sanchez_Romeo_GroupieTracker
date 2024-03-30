@@ -17,21 +17,21 @@
     <header>
         <div class="header_buttons">
             <a href="/tracemoe"> Scans </a>
-            <a href="/index#categories"> Category </a>
+            <a href="/search?offset=0"> Search </a>
         </div>
 
         <div class="header_logo">
             <a href="/index"><img src="/assets/images/AniFindrLogo.png"></a>
         </div>
 
-        <div class="header_searchbar">
-            <input type="text" placeholder="search">
+        <form action="/anime/treatment" class="header_searchbar">
+            <input type="text" name="name" placeholder="search">
             <div class="search"></div>
-        </div>
+        </form>
     </header>
 
     <page>
-        <form class="container" action="/search" method="POST">
+        <form class="container" action="/search?offset=0" method="POST">
             <div class="filter">
                 <div class="category">
                     <input type="radio" name="category" value="action" id="action">
@@ -75,6 +75,14 @@
                 </div>
                 {{end}}
             {{end}}
+        </div>
+        <div class="pagination">
+            {{if eq .Offset "0"}}
+                <p> Previous </p>
+            {{else}}
+                <a href="/search?category={{.Tag}}&year={{.Year}}&rating={{.Rating}}&finished={{.Finished}}&offset={{.Offset}}&pagination=previous"> Previous </a>
+            {{end}}
+            <a href="/search?category={{.Tag}}&year={{.Year}}&rating={{.Rating}}&finished={{.Finished}}&offset={{.Offset}}&pagination=next"> Next </a>
         </div>
     </page>
 

@@ -18,9 +18,14 @@ type TraceMoeResult struct {
 }
 
 type AnimeResponse struct {
-	Data  []Anime `json:"data"`
-	Meta  Meta    `json:"meta"`
-	Links Links   `json:"links"`
+	Offset   string
+	Tag      string
+	Year     string
+	Rating   string
+	Finished string
+	Data     []Anime `json:"data"`
+	Meta     Meta    `json:"meta"`
+	Links    Links   `json:"links"`
 }
 
 type Anime struct {

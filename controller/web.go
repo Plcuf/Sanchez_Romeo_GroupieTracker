@@ -9,6 +9,7 @@ import (
 	"mime/multipart"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -84,11 +85,31 @@ func HandleError(w http.ResponseWriter, r *http.Request) {
 }
 
 func Search(w http.ResponseWriter, r *http.Request) {
-	OffSet := "0"
+	offset := r.FormValue("offset")
 	tag := r.FormValue("category")
 	year := r.FormValue("year")
 	ratingStr := r.FormValue("rating")
 	finished := r.FormValue("finished")
+	pagination := r.FormValue("pagination")
+
+	if pagination == "next" {
+		int_offset, err := strconv.Atoi(offset)
+		if err != nil {
+			http.Error(w, "Failed to convert offset to integer: "+err.Error(), http.StatusInternalServerError)
+			return
+		}
+		offset = strconv.Itoa(int_offset + 20)
+	} else if pagination == "previous" {
+		int_offset, err := strconv.Atoi(offset)
+		if err != nil {
+			http.Error(w, "Failed to convert offset to integer: "+err.Error(), http.StatusInternalServerError)
+			return
+		}
+		offset = strconv.Itoa(int_offset - 20)
+	} else {
+		offset = "0"
+	}
+
 	if len(year) == 0 {
 		year = ""
 	}
@@ -106,7 +127,7 @@ func Search(w http.ResponseWriter, r *http.Request) {
 		rating, _ = strconv.ParseFloat(ratingStr, 64)
 	}
 
-	url := "https://kitsu.io/api/edge/anime?page[limit]=20&page[offset]=" + string(OffSet) + "&filter[categories]=" + tag
+	url := "https://kitsu.io/api/edge/anime?page[limit]=20&page[offset]=" + offset + "&filter[categories]=" + tag
 
 	req, err := http.Get(url)
 	if err != nil {
@@ -130,6 +151,12 @@ func Search(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Failed to decode JSON response: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
+
+	response.Offset = offset
+	response.Tag = tag
+	response.Year = year
+	response.Rating = ratingStr
+	response.Finished = finished
 
 	// Filter the response based on the provided filters
 	filteredAnime := AnimeResponse{}
@@ -217,4 +244,47 @@ func Animedisplay(w http.ResponseWriter, r *http.Request) {
 
 	temps := temps.GetTemps()
 	temps.ExecuteTemplate(w, "animedisplay", response)
+}
+
+func AnimeTreatment(w http.ResponseWriter, r *http.Request) {
+	anime_name := r.FormValue("name")
+	anime_fixed_name := ""
+	for i := 0; i < len(anime_name); i++ {
+		if anime_name[i] == ' ' {
+			anime_fixed_name += "-"
+		} else {
+			anime_fixed_name += string(anime_name[i])
+		}
+	}
+	anime_fixed_name = strings.ToLower(anime_fixed_name)
+	url := "https://kitsu.io/api/edge/anime?filter[slug]=" + anime_fixed_name
+
+	req, err := http.Get(url)
+	if err != nil {
+		http.Error(w, "Failed to make POST request to Trace.moe API: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+	defer req.Body.Close()
+
+	fmt.Println("response Status:", req.Status)
+	// Read response body
+	body, err := io.ReadAll(req.Body)
+	if err != nil {
+		http.Error(w, "Failed to read response body: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	//Decode JSON response
+	var response AnimeResponse
+	if err := json.Unmarshal(body, &response); err != nil {
+		http.Error(w, "Failed to decode JSON response: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	temps := temps.GetTemps()
+	if response.Meta.Count != 0 {
+		temps.ExecuteTemplate(w, "animedisplay", response)
+	} else {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+	}
 }

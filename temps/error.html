@@ -15,17 +15,17 @@
         <header>
             <div class="header_buttons">
                 <a href="/tracemoe"> Scans </a>
-                <a href="/index#categories"> Category </a>
+                <a href="/search?offset=0"> Search </a>
             </div>
 
             <div class="header_logo">
                 <a href="/index"><img src="/assets/images/AniFindrLogo.png"></a>
             </div>
             
-            <div class="header_searchbar">
-                <input type="text" placeholder="search">
+            <form action="/anime/treatment" class="header_searchbar">
+                <input type="text" name="name" placeholder="search">
                 <div class="search"></div>
-            </div>
+            </form>
         </header>
 
         <page>
@@ -33,7 +33,7 @@
                 <div class="arrow"></div>
                 <p class="arrow_text"> Click here to go back to the menu </p>
                 <img src="assets/images/error.gif">
-                <p class="error_message"> The page you're trying to access doesn't exist </p>
+                <p class="error_message"> The page or anime you're trying to access doesn't exist </p>
             </div>
         </page>
 
