@@ -25,7 +25,7 @@ func InitServer() {
 	http.Handle("/assets/", http.StripPrefix("/assets/", fileserver))
 
 	//Le lien d'ou est lancé le serveur
-	fmt.Println("(http://localhost:3030/index) - Server started on port:2020")
-	http.ListenAndServe("localhost:3030", nil)
+	fmt.Println("(http://localhost:8282/index) - Server started on port:8282")
+	http.ListenAndServe("localhost:8282", nil)
 	fmt.Println("Server closed")
 }

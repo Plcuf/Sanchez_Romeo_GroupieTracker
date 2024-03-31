@@ -92,20 +92,24 @@ func Search(w http.ResponseWriter, r *http.Request) {
 	finished := r.FormValue("finished")
 	pagination := r.FormValue("pagination")
 
-	if pagination == "next" {
-		int_offset, err := strconv.Atoi(offset)
-		if err != nil {
-			http.Error(w, "Failed to convert offset to integer: "+err.Error(), http.StatusInternalServerError)
-			return
+	if offset != "" {
+		if pagination == "next" {
+			int_offset, err := strconv.Atoi(offset)
+			if err != nil {
+				http.Error(w, "Failed to convert offset to integer: "+err.Error(), http.StatusInternalServerError)
+				return
+			}
+			offset = strconv.Itoa(int_offset + 20)
+		} else if pagination == "previous" {
+			int_offset, err := strconv.Atoi(offset)
+			if err != nil {
+				http.Error(w, "Failed to convert offset to integer: "+err.Error(), http.StatusInternalServerError)
+				return
+			}
+			offset = strconv.Itoa(int_offset - 20)
+		} else {
+			offset = "0"
 		}
-		offset = strconv.Itoa(int_offset + 20)
-	} else if pagination == "previous" {
-		int_offset, err := strconv.Atoi(offset)
-		if err != nil {
-			http.Error(w, "Failed to convert offset to integer: "+err.Error(), http.StatusInternalServerError)
-			return
-		}
-		offset = strconv.Itoa(int_offset - 20)
 	} else {
 		offset = "0"
 	}
