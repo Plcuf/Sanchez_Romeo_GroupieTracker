@@ -108,7 +108,7 @@ func Search(w http.ResponseWriter, r *http.Request) {
 			}
 			offset = strconv.Itoa(int_offset - 20)
 		} else {
-			offset = "0"
+			offset = "20"
 		}
 	} else {
 		offset = "0"
@@ -210,6 +210,9 @@ func Search(w http.ResponseWriter, r *http.Request) {
 			uniqueAnimeIDs[anime.ID] = struct{}{}
 		}
 	}
+
+	filteredAnime.Amount = strconv.Itoa(len(filteredAnime.Data))
+	response.Amount = strconv.Itoa(len(response.Data))
 
 	// Pass the filtered anime to your page
 	temps := temps.GetTemps()

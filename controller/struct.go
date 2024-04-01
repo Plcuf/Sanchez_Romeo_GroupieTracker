@@ -23,6 +23,7 @@ type AnimeResponse struct {
 	Year     string
 	Rating   string
 	Finished string
+	Amount   string
 	Data     []Anime `json:"data"`
 	Meta     Meta    `json:"meta"`
 	Links    Links   `json:"links"`

@@ -17,7 +17,7 @@
     <header>
         <div class="header_buttons">
             <a href="/tracemoe"> Scans </a>
-            <a href="/search?offset=0"> Search </a>
+            <a href="/search?offset=20"> Search </a>
         </div>
 
         <div class="header_logo">
@@ -31,7 +31,7 @@
     </header>
 
     <page>
-        <form class="container" action="/search?offset=0" method="POST">
+        <form class="container" action="/search?offset=20" method="POST">
             <div class="filter">
                 <div class="category">
                     <input type="radio" name="category" value="action" id="action">
@@ -77,12 +77,16 @@
             {{end}}
         </div>
         <div class="pagination">
-            {{if eq .Offset "0"}}
+            {{if le .Offset "20"}}
                 <p> Previous </p>
             {{else}}
-                <a href="/search?category={{.Tag}}&year={{.Year}}&rating={{.Rating}}&finished={{.Finished}}&offset={{.Offset}}&pagination=previous"> Previous </a>
+            <a href="/search?{{if .Tag}}category={{.Tag}}{{end}}{{if .Year}}&year={{.Year}}{{end}}{{if .Rating}}&rating={{.Rating}}{{end}}{{if .Finished}}&finished={{.Finished}}{{end}}{{if .Offset}}&offset={{.Offset}}{{end}}&pagination=previous"> Previous </a>
             {{end}}
-            <a href="/search?category={{.Tag}}&year={{.Year}}&rating={{.Rating}}&finished={{.Finished}}&offset={{.Offset}}&pagination=next"> Next </a>
+            {{if lt .Amount "20"}}
+                <p> Next </p>
+            {{else}}
+                <a href="/search?{{if .Tag}}category={{.Tag}}{{end}}{{if .Year}}&year={{.Year}}{{end}}{{if .Rating}}&rating={{.Rating}}{{end}}{{if .Finished}}&finished={{.Finished}}{{end}}{{if .Offset}}&offset={{.Offset}}{{end}}&pagination=next"> Next </a>
+            {{end}}
         </div>
     </page>
 
